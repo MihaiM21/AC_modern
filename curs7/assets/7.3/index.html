@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Interdependența set de instrucțiuni - organizare internă</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<nav class="navbar hidden" id="main-nav">
+  <ul>
+    <li><a href="#card-acumulator">Arhitectură acumulator</a></li>
+    <li><a href="#card-registre">Arhitectură registre</a></li>
+    <li><a href="#card-stiva">Arhitectură stivă</a></li>
+    <li><a href="#card-comparatie">Comparație</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <h1>7.3 INTERDEPENDENȚA SET DE INSTRUCȚIUNI - ORGANIZARE INTERNĂ</h1>
+    <p>Există trei tipuri principale de arhitecturi bazate pe locul de stocare a operanzilor: arhitectură pe bază de acumulator, arhitectură pe bază de registre de uz general și arhitectură pe bază de stivă.</p>
+    <button onclick="scrollToCards()">Explorează tipurile de arhitecturi</button>
+  </div>
+</header>
+
+<section id="cards-section" class="cards-column hidden">
+  <h2 class="section-title">Tipuri de arhitecturi</h2>
+  <br>
+  
+  <!-- Card 1: Arhitectură acumulator -->
+  <div class="card-vertical" id="card-acumulator" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-cpu-fill card-icon"></i>
+      <h3>ARHITECTURĂ PE BAZĂ DE ACUMULATOR <span class="info-badge badge-primary">Ac</span></h3>
+    </div>
+    <div id="acumulator-details" class="card-content">
+      <p>În arhitectura pe bază de acumulator, unul dintre operanzi este implicit acumulatorul, iar celălalt operand este specificat în instrucțiune.</p>
+      <br>
+      <p><strong>Exemplu de instrucțiuni:</strong></p>
+      <ul class="arch-list">
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>add x</strong> - Ac ← Ac + x sau Ac ← Ac + @x<br><small style="color: #666;">adună la acumulator conținutul registrului x sau al memoriei de la adresa dată de x</small></span>
+        </li>
+      </ul>
+      <br>
+      <ul class="arch-list">
+        <li onclick="toggleSub('avantaje-ac')" class="list-item-modern">
+          <i class="bi bi-check-circle-fill list-icon" style="color: #28a745;"></i>
+          <span>Avantaje</span>
+        </li>
+        <div id="avantaje-ac" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>Instrucțiuni scurte (acumulatorul este referit implicit)</li>
+            <li>Densitate relativ mare a codului</li>
+          </ul>
+        </div>
+
+        <li onclick="toggleSub('dezavantaje-ac')" class="list-item-modern">
+          <i class="bi bi-x-circle-fill list-icon" style="color: #dc3545;"></i>
+          <span>Dezavantaje</span>
+        </li>
+        <div id="dezavantaje-ac" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>Acumulatorul constituie un puternic factor de limitare al vitezei de lucru al procesorului</li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 2: Arhitectură registre -->
+  <div class="card-vertical" id="card-registre" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-memory card-icon"></i>
+      <h3>ARHITECTURĂ PE BAZĂ DE REGISTRE DE UZ GENERAL <span class="info-badge badge-success">RG</span></h3>
+    </div>
+    <div id="registre-details" class="card-content">
+      <p>În arhitectura pe bază de registre de uz general, toți operanzii sunt specificați explicit în instrucțiune, fie din registre, fie din memorie.</p>
+      <br>
+      <p><strong>Exemple de instrucțiuni:</strong></p>
+      <ul class="arch-list">
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>add r1,r2,r3</strong> - r1 ← r2 + r3</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>add r1,r2</strong> - r1 ← r1 + r2 sau r2 ← r1 + r2</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>mov r1,r2</strong> - r1 ← r2 sau invers</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>add r1,x</strong> - r1 ← r1 + @x</span>
+        </li>
+      </ul>
+      <br>
+      <ul class="arch-list">
+        <li onclick="toggleSub('avantaje-rg')" class="list-item-modern">
+          <i class="bi bi-check-circle-fill list-icon" style="color: #28a745;"></i>
+          <span>Avantaje</span>
+        </li>
+        <div id="avantaje-rg" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>Ușurință în generarea codului de către programe compilatoare</li>
+            <li>Rezultatele intermediare pot fi stocate în registre (foarte rapid)</li>
+            <li>Dacă nu ar exista aceste registre, foarte multe din rezultatele intermediare ar fi trebuit stocate în memoria principală ceea ce ar fi micșorat viteza de prelucrare</li>
+          </ul>
+        </div>
+
+        <li onclick="toggleSub('dezavantaje-rg')" class="list-item-modern">
+          <i class="bi bi-x-circle-fill list-icon" style="color: #dc3545;"></i>
+          <span>Dezavantaje</span>
+        </li>
+        <div id="dezavantaje-rg" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>Fiecare registru trebuie adresat de către instrucțiunea ce-l utilizează, astfel că lungimea instrucțiunilor este relativ mare</li>
+          </ul>
+        </div>
+      </ul>
+      <br>
+      <p><strong>Subtipuri:</strong></p>
+      <ul class="arch-list">
+        <li onclick="toggleSub('risc')" class="list-item-modern">
+          <i class="bi bi-lightning-fill list-icon text-warning"></i>
+          <span>Instrucțiuni cu 3 adrese (RISC)</span>
+        </li>
+        <div id="risc" class="hidden sub-detail">
+          <p>La acest tip de arhitecturi se folosesc doar instrucțiuni de <strong>load</strong> (încarcă) și <strong>store</strong> (stochează) când se comunică cu memoria, iar toate celelalte instrucțiuni se referă la operanzi din registrele UCP (deci prelucrare foarte rapidă).</p>
+          <br>
+          <p><strong>Exemplu pentru x = a × (b + c):</strong></p>
+          <pre style="background: #f0f0f0; padding: 10px; border-radius: 5px;">
+load r1,a    ; r1 ← @a
+load r2,b    ; r2 ← @b
+load r3,c    ; r3 ← @c
+add r2,r2,r3 ; r2 ← (r2 + r3)
+mul r1,r1,r2 ; r1 ← (r1 * r2)
+store x,r1   ; @x ← r1</pre>
+        </div>
+
+        <li onclick="toggleSub('cisc')" class="list-item-modern">
+          <i class="bi bi-gear-fill list-icon text-info"></i>
+          <span>Instrucțiuni cu 2-3 adrese (CISC)</span>
+        </li>
+        <div id="cisc" class="hidden sub-detail">
+          <p>Instrucțiunile pot efectua operații aritmetice sau logice cu operanzi din memorie.</p>
+          <br>
+          <p><strong>Exemplu pentru x = a × (b + c):</strong></p>
+          <p><strong>Cu 3 adrese:</strong></p>
+          <pre style="background: #f0f0f0; padding: 10px; border-radius: 5px;">
+add r1,b,c   ; r1 ← @b + @c
+mul x,r1,a   ; @x ← r1 * @a</pre>
+          <p><strong>Cu 2 adrese:</strong></p>
+          <pre style="background: #f0f0f0; padding: 10px; border-radius: 5px;">
+load r1,b    ; r1 ← @b
+add r1,c     ; r1 ← r1 + @c
+mul r1,a     ; r1 ← r1 * @a
+store x,r1   ; @x ← r1</pre>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 3: Arhitectură stivă -->
+  <div class="card-vertical" id="card-stiva" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-stack card-icon"></i>
+      <h3>ARHITECTURĂ PE BAZĂ DE STIVĂ <span class="info-badge badge-warning">ST</span></h3>
+    </div>
+    <div id="stiva-details" class="card-content">
+      <p>În arhitectura pe bază de stivă, operanzii sunt stocați într-o stivă, iar operațiile se efectuează pe elementele din vârful stivei.</p>
+      <br>
+      <p><strong>Exemple de instrucțiuni:</strong></p>
+      <ul class="arch-list">
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>push x</strong> - trimite cuvântul de adresă x în vârful stivei, VS ← @x</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>add</strong> - aduce primele 2 articole din stivă, le adună și stochează rezultatul în stivă (zero adrese)</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>mul</strong> - aduce primele 2 articole din stivă, le înmulțește și stochează rezultatul în stivă (zero adrese)</span>
+        </li>
+        <li class="list-item-modern" style="cursor: default; pointer-events: none;">
+          <i class="bi bi-code-square list-icon"></i>
+          <span><strong>pop x</strong> - @x ← VS, VS pointează la adr+1</span>
+        </li>
+      </ul>
+      <br>
+      <ul class="arch-list">
+        <li onclick="toggleSub('exemplu-stiva')" class="list-item-modern">
+          <i class="bi bi-file-code-fill list-icon"></i>
+          <span>Exemplu pentru x = a × (b + c)</span>
+        </li>
+        <div id="exemplu-stiva" class="hidden sub-detail">
+          <pre style="background: #f0f0f0; padding: 10px; border-radius: 5px; overflow-x: auto;">
+push a      ; vs ← @a, fie „adr" adresa curentă a vârfului stivei (vs)
+            ; iar stiva crește spre adrese mici
+push b      ; vs ← @b, la adr-1
+push c      ; vs ← @c, la adr-2
+add         ; vs ← (b + c), stocat la adr-1 (zero adrese)
+mul         ; vs ← a*(b+c), stocat la adr (zero adrese)
+pop x       ; @x ← vs, vs pointează la adr+1</pre>
+        </div>
+
+        <li onclick="toggleSub('notatie-poloneza')" class="list-item-modern">
+          <i class="bi bi-calculator-fill list-icon"></i>
+          <span>Notația poloneză (inversă)</span>
+        </li>
+        <div id="notatie-poloneza" class="hidden sub-detail">
+          <p>Pentru a evalua expresiile aritmetice într-un calculator stivă, e necesar să se convertească expresia în notația poloneză (inversă). Ideea a pornit de la matematicianul polonez Lukasievics J, care a notat o expresie de forma "a + b" ca "ab+".</p>
+          <br>
+          <p><strong>Exemple de notație poloneză:</strong></p>
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>x = a × (b + c) = <strong>abc+×</strong></li>
+            <li>x = (a + b) × (c + d) = <strong>ab+cd+×</strong></li>
+            <li>x = (a + b) × (c + d) × (e + f) = <strong>ab+cd+ef+××</strong></li>
+          </ul>
+          <br>
+          <p>După cum se vede, notația poloneză are avantajul că nu folosește paranteze. Ba mai mult, pornind de la stânga la dreapta se indică toate operațiile ce trebuie efectuate, în ordine, pe o arhitectură de tip stivă.</p>
+        </div>
+
+        <li onclick="toggleSub('avantaje-st')" class="list-item-modern">
+          <i class="bi bi-check-circle-fill list-icon" style="color: #28a745;"></i>
+          <span>Avantaje</span>
+        </li>
+        <div id="avantaje-st" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>Evaluare extrem de ușoară a operațiilor pe baza notației inverse</li>
+            <li>Instrucțiuni cu lungime foarte redusă</li>
+          </ul>
+        </div>
+
+        <li onclick="toggleSub('dezavantaje-st')" class="list-item-modern">
+          <i class="bi bi-x-circle-fill list-icon" style="color: #dc3545;"></i>
+          <span>Dezavantaje</span>
+        </li>
+        <div id="dezavantaje-st" class="hidden sub-detail">
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+            <li>O stivă este mai dificil de adresat în mod aleator</li>
+            <li>Codul rezultat este relativ ineficient</li>
+            <li>Stiva introduce și o limitare în viteză</li>
+            <li>De aceea acest tip de arhitectură este rar implementat la procesoare de uz general</li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 4: Comparație -->
+  <div class="card-vertical" id="card-comparatie" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-bar-chart-fill card-icon"></i>
+      <h3>COMPARAȚIE ÎNTRE TIPURILE DE ARHITECTURI</h3>
+    </div>
+    <div id="comparatie-details" class="card-content">
+      <p>Fiecare dintre cele trei tipuri de arhitecturi au avantaje și dezavantaje:</p>
+      <br>
+      <table class="comparison-table">
+        <tr>
+          <th>Caracteristică</th>
+          <th>Acumulator</th>
+          <th>Registre</th>
+          <th>Stivă</th>
+        </tr>
+        <tr>
+          <td data-label="Caracteristică">Lungime instrucțiuni</td>
+          <td data-label="Acumulator">Scurtă</td>
+          <td data-label="Registre">Mare</td>
+          <td data-label="Stivă">Foarte scurtă</td>
+        </tr>
+        <tr>
+          <td data-label="Caracteristică">Densitate cod</td>
+          <td data-label="Acumulator">Ridicată</td>
+          <td data-label="Registre">Medie</td>
+          <td data-label="Stivă">Ridicată</td>
+        </tr>
+        <tr>
+          <td data-label="Caracteristică">Viteză execuție</td>
+          <td data-label="Acumulator">Limită (acumulator)</td>
+          <td data-label="Registre">Ridicată</td>
+          <td data-label="Stivă">Limită (stivă)</td>
+        </tr>
+        <tr>
+          <td data-label="Caracteristică">Ușurință compilare</td>
+          <td data-label="Acumulator">Medie</td>
+          <td data-label="Registre">Ridicată</td>
+          <td data-label="Stivă">Ridicată</td>
+        </tr>
+        <tr>
+          <td data-label="Caracteristică">Adresare aleatoare</td>
+          <td data-label="Acumulator">Da</td>
+          <td data-label="Registre">Da</td>
+          <td data-label="Stivă">Dificilă</td>
+        </tr>
+      </table>
+      <br>
+      <p><strong>Observație:</strong> Multe calculatoare pot fi încadrate în cele 3 categorii de mai sus, dar cele mai multe combină caracteristici din mai multe moduri de organizare.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Buton SUS -->
+<a href="#top" class="back-to-top">↑</a>
+
+<script src="script.js"></script>
+</body>
+</html>
+

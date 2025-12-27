@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secțiunea I - Introducere în arhitectura setului de instrucțiuni</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Acasă</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="sectiunea1.html">Secțiunea I</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sectiunea2.html">Secțiunea II</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sectiunea3.html">Secțiunea III</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar-indicator" style="width: 33%"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mt-4 mb-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Acasă</a></li>
+                            <li class="breadcrumb-item active">Secțiunea I</li>
+                        </ol>
+                    </nav>
+
+                    <!-- Content Wrapper -->
+                    <div class="content-wrapper fade-in-up">
+                        <!-- Section Title -->
+                        <div class="content-section">
+                        <h1 class="display-4 mb-4">I. INTRODUCERE ÎN ARHITECTURA SETULUI DE INSTRUCȚIUNI</h1>
+
+                        <p class="lead">
+                            Arhitectura setului de instrucțiuni specifică unui procesor cuprinde:
+                        </p>
+
+                        <ul class="list-unstyled ms-4">
+                            <li><i class="bi bi-arrow-right text-primary"></i> <strong>setul de instrucțiuni</strong> (instrucțiuni specifice la nivel mașină) recunoscute de procesor,</li>
+                            <li><i class="bi bi-arrow-right text-primary"></i> <strong>tipurile de date</strong> care pot fi manipulate cu aceste instrucțiuni și</li>
+                            <li><i class="bi bi-arrow-right text-primary"></i> <strong>contextul</strong> în care aceste instrucțiuni operează.</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <p class="mb-0">
+                                <strong>Definiție:</strong> Arhitectura setului de instrucțiuni (ASI) este o componentă a mașinii de calcul, vizibilă programatorului la nivel de limbaj de asamblare, componentă care realizează interfața între software și hardware.
+                            </p>
+                        </div>
+
+                        <!-- Image Placeholder -->
+                        <div class="image-placeholder">
+                            <div>
+                                <p class="text-muted mb-2"><strong>Figura 4.1</strong></p>
+                                <p class="text-muted">Arhitectura setului de instrucțiuni ca interfață între hardware și software</p>
+                                <p class="text-muted small">(adaptată după [Patterson90])</p>
+                                <p class="text-muted small mt-3">📷 Inserează imaginea aici</p>
+                            </div>
+                        </div>
+
+                        <h3>Procesarea Instrucțiunilor</h3>
+                        <p>
+                            Pentru a putea comanda componenta hardware a unui calculator trebuie cunoscute instrucțiunile recunoscute de acesta la nivelul mașinii de bază. Instrucțiunile implementate hardware pe o anumită mașină formează <strong>setul de instrucțiuni</strong>, sau limbajul inclus în ASI.
+                        </p>
+                        <p>
+                            Programele în limbaj de nivel înalt (C în figură) sunt compilate pentru a se genera un program recunoscut de mașină, numit <strong>program ASI</strong>. Acesta este programul în cod binar recunoscut de unitatea de control (UC) și interpretat de către o mașină cu algoritm de tranziție a stărilor internă UC; algoritmul poate fi implementat ca microprogram sau poate fi cablat în hardware.
+                        </p>
+                        <p>
+                            În mod similar programele scrise în limbaj de asamblare (ASM) trebuie translatate cu ajutorul unui program translator numit <strong>asamblor</strong> în programe executabile, conform ASI specific mașinii.
+                        </p>
+
+                        <h3>Clasificarea Setului de Instrucțiuni</h3>
+                        <p>
+                            Setul de instrucțiuni implementat pe un anumit microprocesor poate fi clasificat după mai multe criterii:
+                        </p>
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="bi bi-list-ul"></i> Criterii de clasificare</h4>
+                            </div>
+                            <div class="card-body">
+                                <ol>
+                                    <li>
+                                        <strong>Numărul de adrese de operanzi pe instrucțiune</strong>
+                                        <p class="mt-2">
+                                            Numărul de adrese pe instrucțiune afectează în mod direct complexitatea și dimensiunile (în număr de biți) ale unei instrucțiuni. Indiferent de tipul de format ales și de tipul operațiilor numărul maxim de operanzi (adrese) este 3, iar numărul minim este 0.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong>Locul de stocare a operanzilor</strong>
+                                        <p class="mt-2">
+                                            Operanzii operațiilor aritmetice și logice pot fi:
+                                        </p>
+                                        <ul>
+                                            <li>imediați,</li>
+                                            <li>în registrele interne UCP,</li>
+                                            <li>în memoria principală,</li>
+                                            <li>în spațiul de I/O,</li>
+                                            <li>în memorie de tip stivă.</li>
+                                        </ul>
+                                        <p class="mt-2">
+                                            Există arhitecturi care efectuează operații aritmetice și logice doar cu operanzi din registrele interne, iar cu exteriorul permit doar operații de încărcare și stocare a operanzilor (<strong>arhitectură load / store</strong>). Alte tipuri permit operanzi doar în memoria stivă (<strong>stack architecture</strong>).
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong>Tipul operațiilor efectuate</strong>
+                                        <p class="mt-2">
+                                            La implementarea unui set de instrucțiuni se urmărește optimizarea operațiilor cele mai frecvent efectuate pe o anumită mașină. Astfel că tipul instrucțiunilor depinde în special de aplicațiile pentru care este destinat procesorul. De exemplu, un microprocesor destinat aplicațiilor de tip DSP (prelucrare a semnalelor digitale) are instrucțiuni ce optimizează operațiile de: adunare, înmulțire, stocare temporară, shift-are și manipulare de matrice.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong>Tipul datelor prelucrate</strong>
+                                        <p class="mt-2">
+                                            Diferitele mașini pot lucra cu:
+                                        </p>
+                                        <ul>
+                                            <li>numere în virgulă fixă (întregi sau fracționare)</li>
+                                            <li>numere în virgulă mobilă (numere reale)</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <h3>Caracteristici Principale</h3>
+                        <p>
+                            Setul de instrucțiuni al unui procesor poate avea două caracteristici principale:
+                        </p>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-primary">
+                                            <i class="bi bi-check-circle"></i> Regularitate (Ortogonalitate)
+                                        </h4>
+                                        <p class="card-text">
+                                            Această caracteristică impune ca fiecare instrucțiune din setul de instrucțiuni să poată opera cu orice tip de date, conținute în oricare registru sau oricare locație de memorie, și să poată fi adresate prin oricare mod de adresare.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-primary">
+                                            <i class="bi bi-check-circle"></i> Completitudine
+                                        </h4>
+                                        <p class="card-text">
+                                            Această cerință ar impune ca setul de instrucțiuni să cuprindă tot setul de operatori disponibili într-un limbaj. Dar cuprinderea întregului set de operatori, operatori cu frecvențe foarte diferite de utilizare, ar duce la implementări și performanțe departe de cele optime.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box warning">
+                            <p class="mb-0">
+                                <strong>Regulă practică:</strong> „Execută rapid operațiile frecvente și corect pe cele rare". În faza de proiectare a unui procesor, setul de instrucțiuni se croiește anticipând spectrul de aplicații ale procesorului, astfel ca acestea să poată fi ușor exprimate sau programate.
+                            </p>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                            <a href="index.html" class="btn btn-outline-primary btn-lg">
+                                <i class="bi bi-arrow-left"></i> Înapoi la Acasă
+                            </a>
+                            <a href="sectiunea2.html" class="btn btn-primary btn-lg">
+                                Următoarea Secțiune <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h5 class="mb-3">
+                        <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
+                    </h5>
+                    <p class="text-muted mb-0">
+                        Platformă educațională modernă pentru studiul arhitecturii calculatoarelor
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="mb-3">Link-uri rapide</h5>
+                    <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-end">
+                        <a href="sectiunea1.html" class="text-muted text-decoration-none">Secțiunea I</a>
+                        <span class="text-muted d-none d-md-inline">•</span>
+                        <a href="sectiunea2.html" class="text-muted text-decoration-none">Secțiunea II</a>
+                        <span class="text-muted d-none d-md-inline">•</span>
+                        <a href="sectiunea3.html" class="text-muted text-decoration-none">Secțiunea III</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2024 Arhitectura Calculatoarelor - Curs 7. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

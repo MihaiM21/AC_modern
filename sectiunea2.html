@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secțiunea II - Formatul instrucțiunilor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Acasă</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sectiunea1.html">Secțiunea I</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="sectiunea2.html">Secțiunea II</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sectiunea3.html">Secțiunea III</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar-indicator" style="width: 66%"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mt-4 mb-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Acasă</a></li>
+                            <li class="breadcrumb-item active">Secțiunea II</li>
+                        </ol>
+                    </nav>
+
+                    <!-- Content Wrapper -->
+                    <div class="content-wrapper fade-in-up">
+                        <!-- Section Title -->
+                        <div class="content-section">
+                        <h1 class="display-4 mb-4">II. FORMATUL INSTRUCȚIUNILOR</h1>
+
+                        <p>
+                            Formatul instrucțiunilor se reprezintă de obicei în formă grafică sub forma unor dreptunghiuri ce simbolizează câmpurile binare incluse în instrucțiuni. Din punctul de vedere al lungimii instrucțiunilor pot exista două tipuri de ASI:
+                        </p>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-primary">
+                                            <i class="bi bi-file-earmark"></i> Lungime Fixă
+                                        </h4>
+                                        <p class="card-text">
+                                            Arhitecturi la care <strong>lungimea</strong> instrucțiunilor este <strong>fixă</strong>, pentru tot setul recunoscut.
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                Exemple: arhitecturile RISC, dar și arhitecturi CISC cum ar fi cea a calculatorului Felix C256.
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-primary">
+                                            <i class="bi bi-file-earmark-text"></i> Lungime Variabilă
+                                        </h4>
+                                        <p class="card-text">
+                                            Arhitecturi cu <strong>lungime variabilă</strong> a instrucțiunilor recunoscute.
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                La microprocesoarele cu lungime fixă, unitatea de control este mai simplă, dar densitatea codului este mai mică.
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Tipuri de Arhitecturi</h3>
+                        <p>
+                            În funcție de locul de stocare a operanzilor, există trei tipuri principale de arhitecturi:
+                        </p>
+
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tip</th>
+                                        <th>Denumire</th>
+                                        <th>Caracteristici</th>
+                                        <th>Exemplu Instrucțiune</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Ac</strong></td>
+                                        <td>Arhitectură pe bază de acumulator</td>
+                                        <td>Acumulatorul este referit ca registru implicit</td>
+                                        <td><code>add x</code><br><small>Ac ← Ac + x</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>RG</strong></td>
+                                        <td>Arhitectură pe bază de registre de uz general</td>
+                                        <td>Operanzi în registre, ușor de generat cod</td>
+                                        <td><code>add r1,r2,r3</code><br><small>r1 ← r2 + r3</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ST</strong></td>
+                                        <td>Arhitectură pe bază de stivă</td>
+                                        <td>Instrucțiuni cu zero adrese, notație poloneză</td>
+                                        <td><code>push x<br>add</code><br><small>VS ← @x<br>VS ← (b + c)</small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Avantaje și Dezavantaje</h3>
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="bi bi-info-circle"></i> Comparație Arhitecturi</h4>
+                            </div>
+                            <div class="card-body">
+                                <h5>Arhitectură pe bază de acumulator (Ac)</h5>
+                                <ul>
+                                    <li><strong>Avantaje:</strong> Instrucțiuni scurte, densitate relativ mare a codului</li>
+                                    <li><strong>Dezavantaje:</strong> Acumulatorul constituie un puternic factor de limitare al vitezei de lucru</li>
+                                </ul>
+
+                                <h5 class="mt-4">Arhitectură pe bază de registre de uz general (RG)</h5>
+                                <ul>
+                                    <li><strong>Avantaje:</strong> Ușurință generării codului de către programe compilatoare, viteza de prelucrare ridicată</li>
+                                    <li><strong>Dezavantaje:</strong> Lungimea instrucțiunilor este relativ mare (fiecare registru trebuie adresat)</li>
+                                </ul>
+
+                                <h5 class="mt-4">Arhitectură pe bază de stivă (ST)</h5>
+                                <ul>
+                                    <li><strong>Avantaje:</strong> Evaluare extrem de ușoară a operațiilor pe baza notației inverse (notația „poloneză"), instrucțiuni cu lungime foarte redusă</li>
+                                    <li><strong>Dezavantaje:</strong> Stiva este mai dificil de adresat în mod aleator, codul rezultat este relativ ineficient, limitare în viteză</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Exemplu: Evaluarea Expresiei x = a × (b + c)</h3>
+                        <p>
+                            Pentru a ilustra influența numărului de adrese în programele executate de procesor vom evalua egalitatea:
+                        </p>
+
+                        <div class="math-formula">
+                            <strong>x = a × (b + c)</strong>
+                        </div>
+
+                        <p>
+                            Presupunem că operanzii <code>a</code>, <code>b</code> și <code>c</code> din relație sunt stocați în memorie, în locațiile de adrese <code>a</code>, <code>b</code>, <code>c</code>, iar rezultatul se va introduce la adresa <code>x</code> în memorie.
+                        </p>
+
+                        <h4>a) Arhitecturi pe baza de registre de uz general</h4>
+
+                        <h5>Instrucțiuni cu 3 adrese (CISC)</h5>
+                        <div class="code-block">
+                            <code>
+                                add r1, b, c    ; r1 ← @b + @c<br>
+                                mul x, r1, a    ; @x ← r1 * @a
+                            </code>
+                        </div>
+                        <div class="highlight-box">
+                            <p class="mb-0">
+                                <strong>Observație:</strong> Deși programul este foarte scurt, el conține instrucțiuni cu format de lungime mare și se desfășoară relativ lent. La prima instrucțiune se fac două accesări la memorie pentru citirea operanzilor b și c. La fel pentru a doua instrucțiune sunt necesare două accesări succesive la memorie (operand și rezultat).
+                            </p>
+                        </div>
+
+                        <h5>Instrucțiuni cu 3 adrese (RISC)</h5>
+                        <div class="code-block">
+                            <code>
+                                load r1, a      ; r1 ← @a<br>
+                                load r2, b      ; r2 ← @b<br>
+                                load r3, c      ; r3 ← @c<br>
+                                add r2, r2, r3  ; r2 ← (r2 + r3)<br>
+                                mul r1, r1, r2  ; r1 ← (r1 * r2)<br>
+                                store x, r1     ; @x ← r1
+                            </code>
+                        </div>
+                        <div class="highlight-box success">
+                            <p class="mb-0">
+                                <strong>Avantaj:</strong> La acest tip de arhitecturi se folosesc doar instrucțiuni de load (încarcă) și store (stochează) când se comunică cu memoria, iar toate celelalte instrucțiuni se referă la operanzi din registrele UCP (deci prelucrare foarte rapidă).
+                            </p>
+                        </div>
+
+                        <h5>Instrucțiuni cu 2 adrese (CISC)</h5>
+                        <div class="code-block">
+                            <code>
+                                load r1, b      ; r1 ← @b<br>
+                                add r1, c      ; r1 ← r1 + @c<br>
+                                mul r1, a      ; r1 ← r1 * @a<br>
+                                store x, r1     ; @x ← r1
+                            </code>
+                        </div>
+
+                        <h4 class="mt-4">b) Arhitecturi pe baza de acumulator</h4>
+                        <p>Instrucțiuni cu o adresă, acumulatorul fiind adresat implicit:</p>
+                        <div class="code-block">
+                            <code>
+                                load b         ; ac ← @b<br>
+                                add c          ; ac ← ac + @c<br>
+                                store t        ; @t ← ac<br>
+                                load a         ; ac ← @a<br>
+                                mul t          ; ac ← ac * @t<br>
+                                store x        ; @x ← ac
+                            </code>
+                        </div>
+                        <p class="small text-muted">
+                            unde s-a notat cu „t" adresa unei locații de memorie folosită pentru stocarea temporară a rezultatelor intermediare
+                        </p>
+
+                        <h4 class="mt-4">c) Arhitecturi pe bază de stivă</h4>
+                        <p>Instrucțiuni cu zero adrese:</p>
+                        <div class="code-block">
+                            <code>
+                                push a         ; vs ← @a, la adr<br>
+                                push b         ; vs ← @b, la adr-1<br>
+                                push c         ; vs ← @c, la adr-2<br>
+                                add             ; vs ← (b + c), stocat la adr-1<br>
+                                mul             ; vs ← a*(b+c), stocat la adr<br>
+                                pop x          ; @x ← vs, vs pointează la adr+1
+                            </code>
+                        </div>
+                        <div class="highlight-box">
+                            <p class="mb-0">
+                                <strong>Notație:</strong> Pentru a evalua expresiile aritmetice într-un calculator stivă, e necesar să se convertească expresia în notația poloneză (inversă). Ideea a pornit de la matematicianul polonez Lukasievics J, care a notat o expresie de forma "a + b" ca "ab+".
+                            </p>
+                        </div>
+
+                        <h3>Notația Poloneză</h3>
+                        <p>
+                            După același principiu putem exemplifica notația poloneză și pentru alte ecuații:
+                        </p>
+
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Expresie</th>
+                                        <th>Notație Poloneză</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>x = a × (b + c)</code></td>
+                                        <td><code>abc+×</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>x = (a + b) × (c + d)</code></td>
+                                        <td><code>ab + cd+×</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>x = (a + b) × (c + d) × (e + f)</code></td>
+                                        <td><code>ab + cd + ef+××</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="highlight-box success">
+                            <p class="mb-0">
+                                <strong>Avantaj:</strong> Notația poloneză are avantajul că nu folosește paranteze. Ba mai mult, pornind de la stânga la dreapta se indică toate operațiile ce trebuie efectuate, în ordine, pe o arhitectură de tip stivă.
+                            </p>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                            <a href="sectiunea1.html" class="btn btn-outline-primary btn-lg">
+                                <i class="bi bi-arrow-left"></i> Secțiunea I
+                            </a>
+                            <a href="sectiunea3.html" class="btn btn-primary btn-lg">
+                                Următoarea Secțiune <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h5 class="mb-3">
+                        <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
+                    </h5>
+                    <p class="text-muted mb-0">
+                        Platformă educațională modernă pentru studiul arhitecturii calculatoarelor
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="mb-3">Link-uri rapide</h5>
+                    <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-end">
+                        <a href="sectiunea1.html" class="text-muted text-decoration-none">Secțiunea I</a>
+                        <span class="text-muted d-none d-md-inline">•</span>
+                        <a href="sectiunea2.html" class="text-muted text-decoration-none">Secțiunea II</a>
+                        <span class="text-muted d-none d-md-inline">•</span>
+                        <a href="sectiunea3.html" class="text-muted text-decoration-none">Secțiunea III</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2024 Arhitectura Calculatoarelor - Curs 7. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

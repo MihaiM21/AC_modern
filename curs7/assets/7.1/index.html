@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Introducere în arhitectura setului de instrucțiuni</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<nav class="navbar hidden" id="main-nav">
+  <ul>
+    <li><a href="#card-definitie">Definiție</a></li>
+    <li><a href="#card-clasificare">Clasificare</a></li>
+    <li><a href="#card-caracteristici">Caracteristici</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <h1>7.1 INTRODUCERE ÎN ARHITECTURA SETULUI DE INSTRUCȚIUNI</h1>
+    <p>Arhitectura setului de instrucțiuni specifică unui procesor cuprinde setul de instrucțiuni recunoscute de procesor, tipurile de date care pot fi manipulate și contextul în care aceste instrucțiuni operează.</p>
+    <button onclick="scrollToCards()">Explorează conținutul</button>
+  </div>
+</header>
+
+<section id="cards-section" class="cards-column hidden">
+  <h2 class="section-title">Conținut</h2>
+  <br>
+  
+  <!-- Card 1: Definiție -->
+  <div class="card-vertical" id="card-definitie" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-info-circle-fill card-icon"></i>
+      <h3>DEFINIȚIE</h3>
+    </div>
+    <div id="definitie-details" class="card-content">
+      <p>Arhitectura setului de instrucțiuni (ASI) este o componentă a mașinii de calcul, vizibilă programatorului la nivel de limbaj de asamblare, componentă care realizează interfața între software și hardware.</p>
+      <br>
+      <div class="figure-placeholder">
+        <p><strong>[Figura 4.1 - de inserat manual]</strong></p>
+        <p><em>Arhitectura setului de instrucțiuni ca interfață între hardware și software</em></p>
+      </div>
+      <br>
+      <p>Pentru a putea comanda componenta hardware a unui calculator trebuie cunoscute instrucțiunile recunoscute de acesta la nivelul mașinii de bază. Instrucțiunile implementate hardware pe o anumită mașină formează setul de instrucțiuni, sau limbajul inclus în ASI.</p>
+      <br>
+      <p>Programele în limbaj de nivel înalt (C în figură) sunt compilate pentru a se genera un program recunoscut de mașină, numit program ASI. Acesta este programul în cod binar recunoscut de unitatea de control (UC) și interpretat de către o mașină cu algoritm de tranziție a stărilor internă UC; algoritmul poate fi implementat ca microprogram sau poate fi cablat în hardware.</p>
+      <br>
+      <p>În mod similar programele scrise în limbaj de asamblare (ASM) trebuie translatate cu ajutorul unui program translator numit asamblor în programe executabile, conform ASI specific mașinii.</p>
+    </div>
+  </div>
+
+  <!-- Card 2: Clasificare -->
+  <div class="card-vertical" id="card-clasificare" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-diagram-3-fill card-icon"></i>
+      <h3>CLASIFICAREA SETULUI DE INSTRUCȚIUNI</h3>
+    </div>
+    <div id="clasificare-details" class="card-content">
+      <p>Setul de instrucțiuni implementat pe un anumit microprocesor poate fi clasificat după mai multe criterii:</p>
+      <br>
+      <ul class="arch-list">
+        <li onclick="toggleSub('numar-adrese')" class="list-item-modern">
+          <i class="bi bi-1-circle-fill list-icon"></i>
+          <span>Numărul de adrese de operanzi pe instrucțiune</span>
+        </li>
+        <div id="numar-adrese" class="hidden sub-detail">
+          <p>Numărul de adrese pe instrucțiune afectează în mod direct complexitatea și dimensiunile (în număr de biți) ale unei instrucțiuni. Indiferent de tipul de format ales și de tipul operațiilor numărul maxim de operanzi (adrese) este 3, iar numărul minim este 0.</p>
+        </div>
+
+        <li onclick="toggleSub('loc-stocare')" class="list-item-modern">
+          <i class="bi bi-2-circle-fill list-icon"></i>
+          <span>Locul de stocare a operanzilor</span>
+        </li>
+        <div id="loc-stocare" class="hidden sub-detail">
+          <p>Operanzii operațiilor aritmetice și logice pot fi imediați, sau se pot găsi în registrele interne UCP, în memoria principală, în spațiul de I/O, sau în memorie de tip stivă.</p>
+          <br>
+          <p>Există arhitecturi care efectuează operații aritmetice și logice doar cu operanzi din registrele interne, iar cu exteriorul permit doar operații de încărcare și stocare a operanzilor (arhitectură <strong>load / store</strong>).</p>
+          <br>
+          <p>Alte tipuri permit operanzi doar în memoria stivă (<strong>stack architecture</strong>). Locul de stocare al operanzilor afectează nu numai formatul instrucțiunilor, dar și modurile de adresare ce trebuie codificate.</p>
+        </div>
+
+        <li onclick="toggleSub('tip-operatii')" class="list-item-modern">
+          <i class="bi bi-3-circle-fill list-icon"></i>
+          <span>Tipul operațiilor efectuate</span>
+        </li>
+        <div id="tip-operatii" class="hidden sub-detail">
+          <p>La implementarea unui set de instrucțiuni se urmărește optimizarea operațiilor cele mai frecvent efectuate pe o anumită mașină. Astfel că tipul instrucțiunilor depinde în special de aplicațiile pentru care este destinat procesorul.</p>
+          <br>
+          <p>De exemplu, un microprocesor destinat aplicațiilor de tip DSP (prelucrare a semnalelor digitale) are instrucțiuni ce optimizează operațiile de: adunare, înmulțire, stocare temporară, <strong>shift</strong>-are și manipulare de matrice.</p>
+        </div>
+
+        <li onclick="toggleSub('tip-date')" class="list-item-modern">
+          <i class="bi bi-4-circle-fill list-icon"></i>
+          <span>Tipul datelor prelucrate</span>
+        </li>
+        <div id="tip-date" class="hidden sub-detail">
+          <p>Diferitele mașini pot lucra cu numere în virgulă fixă (întregi sau fracționare) și numere în virgulă mobilă (numere reale).</p>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 3: Caracteristici -->
+  <div class="card-vertical" id="card-caracteristici" data-aos="fade-up">
+    <div class="card-header-modern">
+      <i class="bi bi-star-fill card-icon"></i>
+      <h3>CARACTERISTICI ALE SETULUI DE INSTRUCȚIUNI</h3>
+    </div>
+    <div id="caracteristici-details" class="card-content">
+      <p>Setul de instrucțiuni al unui procesor poate avea două caracteristici principale:</p>
+      <br>
+      <ul class="arch-list">
+        <li onclick="toggleSub('regularitate')" class="list-item-modern">
+          <i class="bi bi-check-circle-fill list-icon text-success"></i>
+          <span>Regularitate (ortogonalitate)</span>
+        </li>
+        <div id="regularitate" class="hidden sub-detail">
+          <p>Această caracteristică impune ca fiecare instrucțiune din setul de instrucțiuni să poată opera cu orice tip de date, conținute în oricare registru sau oricare locație de memorie, și să poată fi adresate prin oricare mod de adresare.</p>
+        </div>
+
+        <li onclick="toggleSub('completitudine')" class="list-item-modern">
+          <i class="bi bi-check-circle-fill list-icon text-success"></i>
+          <span>Completitudine</span>
+        </li>
+        <div id="completitudine" class="hidden sub-detail">
+          <p>Această cerință ar impune ca setul de instrucțiuni să cuprindă tot setul de operatori disponibili într-un limbaj. Dar cuprinderea întregului set de operatori, operatori cu frecvențe foarte diferite de utilizare, ar duce la implementări și performanțe departe de cele optime.</p>
+          <br>
+          <p>În consecință se introduce o cenzură pentru operatorii cu frecvență scăzută de apariție în programe, în avantajul operatorilor cu frecvență ridicată. Uneori se introduce regula (cam generală dar practică): <strong>"Execută rapid operațiile frecvente și corect pe cele rare"</strong>.</p>
+          <br>
+          <p>În faza de proiectare a unui procesor, setul de instrucțiuni se croiește anticipând spectrul de aplicații ale procesorului, astfel ca acestea să poată fi ușor exprimate sau programate. Aceasta este faza în care se pot determina operațiile ce vor fi folosite frecvent.</p>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Buton SUS -->
+<a href="#top" class="back-to-top">↑</a>
+
+<script src="script.js"></script>
+</body>
+</html>
+
