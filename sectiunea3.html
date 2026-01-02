@@ -59,180 +59,216 @@
                     <div class="content-wrapper fade-in-up">
                         <!-- Section Title -->
                         <div class="content-section">
-                        <h1 class="display-4 mb-4">III. INTERDEPENDENȚA SET DE INSTRUCȚIUNI - ORGANIZARE INTERNĂ A PROCESORULUI</h1>
+                        <h1 class="display-4 mb-4">III. INTERDEPENDENȚA<br>SET DE INSTRUCȚIUNI - ORGANIZARE INTERNĂ A PROCESORULUI</h1>
 
-                        <p class="lead">
-                            Această secțiune explorează relația dintre setul de instrucțiuni și organizarea internă a procesorului, evidențiind modul în care designul instrucțiunilor influențează arhitectura hardware.
+                        <p class="mt-4">
+                            O sursă de controverse începând de la prima generație de calculatoare a fost: câte <em>adrese explicite</em> pentru operanzi să includă o instrucțiune? Cu cât sunt mai puține adrese cu atât e mai scurtă instrucțiunea. Dar limitând numărul de adrese se limitează domeniul de funcții pe care fiecare instrucțiune le poate realiza. În general, mai puține adrese înseamnă mai multe instrucțiuni primitive și deci programe mai lungi pentru o anumită sarcină de rezolvat.
                         </p>
 
-                        <h3>Relația dintre ASI și Hardware</h3>
                         <p>
-                            Setul de instrucțiuni nu este independent de organizarea internă a procesorului. Există o strânsă interdependență între:
+                            În timp ce necesitățile de stocare în memorie pentru instrucțiuni mai scurte și programe mai lungi tind să se echilibreze cu instrucțiunile lungi și programe scurte, programe mai lungi cer un timp mai lung de execuție. Pe de altă parte, instrucțiunile lungi, cu adrese multiple, cer de obicei circuite mai complexe pentru decodare și prelucrare. De multe ori procesoarele sunt clasificate după numărul maxim de adrese de memorie principală în câmpurile instrucțiunilor lor. Calculatoarele conținând un număr diferit de adrese au în general instrucțiuni de lungimi diferite. Instrucțiunile cu doi operanzi necesită cel mult trei adrese. De exemplu, pentru o operație de adunare, simbolizată prin mnemonica "add" pot fi implementate instrucțiuni cu minim 0 și maxim 3 operanzi, așa cum se observă în tabelul 4.1.
                         </p>
 
-                        <div class="row mt-4">
-                            <div class="col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-primary">
-                                            <i class="bi bi-cpu"></i> Setul de Instrucțiuni
-                                        </h4>
-                                        <ul>
-                                            <li>Tipurile de operații suportate</li>
-                                            <li>Formatul instrucțiunilor</li>
-                                            <li>Modurile de adresare</li>
-                                            <li>Tipurile de date</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-primary">
-                                            <i class="bi bi-motherboard"></i> Organizarea Internă
-                                        </h4>
-                                        <ul>
-                                            <li>Structura registrelor</li>
-                                            <li>Unitățile funcționale</li>
-                                            <li>Unitatea de control</li>
-                                            <li>Organizarea memoriei</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3 class="mt-5">Tabelul 4.1. Formate de instrucțiuni</h3>
+                        <div class="table-responsive mt-3 mb-5">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Număr<br>adrese</th>
+                                        <th>Format<br>instrucțiune</th>
+                                        <th>Comentariu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"><strong>3</strong></td>
+                                        <td><code>add x,y</code></td>
+                                        <td>; z = x-y , unde x,y,z, sunt locații de memorie, nume de registre, sau date imediate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><strong>2</strong></td>
+                                        <td><code>add x,y</code></td>
+                                        <td>; x = x+y sau Ac ← x+y, în funcție de procesor (Ac = registru acumulator)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><strong>1</strong></td>
+                                        <td><code>add x</code></td>
+                                        <td>; Ac = Ac+x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><strong>0</strong></td>
+                                        <td><code>add</code></td>
+                                        <td>; adună primele două articole din vârful stivei și ; stochează rezultatul în noul vârf al stivei</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <h3>Influența ASI asupra Hardware</h3>
                         <p>
-                            Designul setului de instrucțiuni determină în mod direct:
+                            Numărul de câmpuri de adresă în formatul instrucțiunii unui procesor depinde organizarea internă a registrelor sale, dar în același timp influențează modul în care este proiectat procesorul ca organizare, dîn punctul de vedere al registrelor interne. Numărul de adrese poate fi diferit, de la instrucțiune la instrucțiune la același procesor. De exemplu instrucțiunea de scădere poate avea trei adrese de operanzi (doi sursă și unul destinație), iar instrucțiunea de complementare poate avea un singur operand (registrul sursă este și destinație).
                         </p>
 
-                        <div class="card mb-4">
-                            <div class="card-header bg-primary text-white">
-                                <h4 class="mb-0"><i class="bi bi-diagram-3"></i> Aspecte Hardware Influențate</h4>
-                            </div>
-                            <div class="card-body">
-                                <ol>
-                                    <li>
-                                        <strong>Numărul și tipul registrelor</strong>
-                                        <p class="mt-2">
-                                            Dacă ASI permite operanzi în registre, procesorul trebuie să aibă un set suficient de registre pentru a stoca operanzi și rezultate intermediare.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>Unitățile aritmetice și logice</strong>
-                                        <p class="mt-2">
-                                            Tipurile de operații din ASI determină ce unități funcționale sunt necesare (ALU pentru operații aritmetice, unități pentru operații în virgulă mobilă, etc.).
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>Unitatea de control</strong>
-                                        <p class="mt-2">
-                                            Complexitatea instrucțiunilor influențează complexitatea unității de control. Instrucțiuni cu format fix simplifică UC, în timp ce instrucțiuni cu format variabil necesită logică mai complexă de decodificare.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>Organizarea memoriei</strong>
-                                        <p class="mt-2">
-                                            Dacă ASI permite acces direct la memorie pentru operanzi, procesorul trebuie să aibă interfață adecvată cu memoria principală.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>Pipeline-ul de execuție</strong>
-                                        <p class="mt-2">
-                                            Tipul și complexitatea instrucțiunilor influențează modul în care pot fi pipeline-uite pentru execuție paralelă.
-                                        </p>
-                                    </li>
-                                </ol>
-                            </div>
+                        <p class="mt-4">
+                            Conform legăturii dintre organizarea UCP și numărul de adrese pe instrucțiune, vom putea încadra cele mai multe procesoare într-una din următoarele trei categorii:
+                        </p>
+
+                        <ol class="mt-3">
+                            <li class="mb-3">
+                                <strong><em>organizare pe bază de registru acumulator (Ac)</em></strong> la care pentru majoritatea operațiilor unui dintre operanzi se găsește implicit în acumulator. De asemenea rezultatul operației se acumulează în acest registru cu funcție specială
+                            </li>
+                            <li class="mb-3">
+                                <strong><em>organizare pe bază de registre de utilizare generală (RG)</em></strong>. La acest tip de organizare operanzii sunt explicit localizați în registre, fie în registrele din localiile memoriei principale
+                            </li>
+                            <li class="mb-3">
+                                <strong><em>organizare de tip stivă (ST)</em></strong> la care operanzii se găsesc implicit în vârful stivei și tot aici se stochează rezultatul. Există unele procesoare de tip stivă care folosesc două stive: una pentru operații asupra datelor și alta pentru operații asupra adreselor.
+                            </li>
+                        </ol>
+
+                        <h3 class="mt-5">Tabelul 4.2. Exemple de instrucțiuni</h3>
+                        <div class="table-responsive mt-3 mb-5">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tip<br>Arhitectură</th>
+                                        <th>Instrucțiuni</th>
+                                        <th>Comentarii</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"><strong>Ac</strong></td>
+                                        <td><code>add x</code></td>
+                                        <td>;Ac ← Ac + x sau Ac ← Ac + @x<br>adună la acumulator conținutul registrului x sau al memoriei de la adresa dată de x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><strong>RG</strong></td>
+                                        <td><code>add r1,r2,r3<br>add r1,r2<br>mov r1,r2<br>add r1,x</code></td>
+                                        <td>; r1 ← r2 + r3<br>; r1 ← r1 + r2 sau r2 ← r1 + r2<br>; r1 ← r2 sau invers<br>; r1 ← r1 + @x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><strong>ST</strong></td>
+                                        <td><code>push x<br>add</code></td>
+                                        <td>;trimite cuvântul de adresă x în vârful stivei,<br>;VS ← @x<br>;aduce primele 2 articole din stivă, le adună și ;<br>stochează rezultatul în stivă</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <h3>Influența Hardware asupra ASI</h3>
                         <p>
-                            La rândul său, constrângerile hardware influențează designul ASI:
+                            Fiecare dintre cele trei tipuri de arhitecturi au avantaje și dezavantaje. Astfel arhitecturile pe bază de acumulator conduc la programe scurte, pentru că acumulatorul este referit ca registru <em>implicit</em> la multe dintre instrucțiunile mașinii. Conduce și la o densitate relativ mare a codului (programelor) stocate în memorie, dar acumulatorul constituie un puternic factor de limitare al vitezei de lucru al procesorului. Mașinile pe bază de registre de uz general prezintă avantaje din punctul de vedere al ușurinței generării codului de către programe compilatoare. Dacă au și fi existat aceste registre, foarte multe din rezultatele intermediare ar fi trebuit stocate în memoria principală ceea ce ar fi micșorat viteza de prelucrare. Dezavantajul arhitecturilor de tip stivă este că lungimea instrucțiunilor pe baza notației inverse (notația "poloneză" - vezi exemplul de mai jos). Această concluzie și la instrucțiuni cu lungime foarte redusă. Dar plecâte o stivă este mai dificil de adresat în mod aleator, iar codul rezultat este relativ ineficient. Stiva introduce și o testare în viteză, dar aceea ași tip de arhitectură este rău implementat în procesoare de uz general.
                         </p>
 
-                        <div class="highlight-box">
-                            <ul>
-                                <li>
-                                    <strong>Limitări de spațiu:</strong> Numărul limitat de biți pentru codificarea instrucțiunilor poate limita numărul de instrucțiuni sau de moduri de adresare.
-                                </li>
-                                <li>
-                                    <strong>Performanță:</strong> Necesitatea de a executa rapid instrucțiuni frecvente poate determina includerea unor instrucțiuni specializate în ASI.
-                                </li>
-                                <li>
-                                    <strong>Compatibilitate:</strong> Necesitatea de a menține compatibilitatea cu versiuni anterioare poate limita modificările ASI.
-                                </li>
-                                <li>
-                                    <strong>Cost:</strong> Costul implementării hardware pentru anumite instrucțiuni poate determina excluderea lor din ASI.
-                                </li>
-                            </ul>
+                        <p class="mt-4">
+                            În tabelul 4.2. se prezintă câteva exemple de instrucțiuni pentru cele trei tipuri de arhitecturi. Multe calculatoare pot fi încadrate în cele 3 categorii de mai sus, dar cele mai multe combină caracteristici din mai multe moduri de organizare.
+                        </p>
+
+                        <p>
+                            Pentru a ilustra influența numărului de adrese în programele executate de procesor vom evalua egalitatea:
+                        </p>
+
+                        <div class="text-center my-4">
+                            <h4><em>x = a×(b + c)</em></h4>
+                            <p class="text-muted">(4.1)</p>
                         </div>
 
-                        <h3>Exemple de Interdependențe</h3>
+                        <p>
+                            utilizând exemple de instrucțiuni cu 0, 1, 2, și 3 adrese. Vom folosi simbolurile (mnemonicele):
+                        </p>
 
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h4>Exemplu 1: Arhitecturi RISC vs CISC</h4>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <h5 class="text-primary">RISC</h5>
-                                        <ul>
-                                            <li>Instrucțiuni simple, format fix</li>
-                                            <li>Hardware simplu, unitate de control simplă</li>
-                                            <li>Pipeline-ul este mai ușor de implementat</li>
-                                            <li>Număr mare de registre</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 class="text-primary">CISC</h5>
-                                        <ul>
-                                            <li>Instrucțiuni complexe, format variabil</li>
-                                            <li>Hardware complex, microprogramare</li>
-                                            <li>Pipeline-ul este mai dificil</li>
-                                            <li>Număr mai mic de registre</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <ul class="mt-3 mb-4">
+                            <li><strong>add, mul,</strong> - pentru operațiile aritmetice elementare de adunare și înmulțire</li>
+                            <li><strong>load, store</strong> - transfer de la memorie spre/dinspre registre</li>
+                            <li><strong>push, pop</strong> - inserare respectiv extragere din stivă.</li>
+                            <li><strong>ri#</strong> - registre interne ale UCP, unde # este un indice</li>
+                        </ul>
+
+                        <p>
+                            Presupunem că operanzii a, b și c din relația (4.1) sunt stocați în memorie, în locațiile de adrese a, b, c, iar rezultatul se va introduce la adresa x în memorie.
+                        </p>
+
+                        <h3 class="mt-5">a) pentru arhitecturi pe bază de registre de uz general:</h3>
+
+                        <h4 class="mt-4">- <em>instrucțiuni cu 3 adrese care pot efectua operații aritmetice sau logice cu operanzi din memorie (CISC):</em></h4>
+
+                        <div class="code-block mt-3 mb-3">
+                            <pre><code>add    r1,b,c        ;r1 ← @b + @c
+mul    x,r1,a        ;@x ← r1 * @a</code></pre>
                         </div>
 
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h4>Exemplu 2: Arhitecturi Load/Store</h4>
-                                <p>
-                                    În arhitecturile load/store, ASI permite doar instrucțiuni de încărcare și stocare pentru comunicarea cu memoria. Aceasta determină:
-                                </p>
-                                <ul>
-                                    <li>Necesitatea unui set mare de registre pentru stocarea temporară</li>
-                                    <li>Simplificarea unității de control (toate operațiile aritmetice sunt între registre)</li>
-                                    <li>Posibilitatea de a implementa pipeline eficient</li>
-                                    <li>Instrucțiuni uniforme, ușor de decodificat</li>
-                                </ul>
-                            </div>
+                        <p class="small">
+                            Se observă că acest format poate utiliza fiecare câmp de adresă operand pentru a specifica un operand dintr-un registru sau din memorie. Deși programul este foarte scurt, el conține instrucțiuni cu format de lungime mare și se desfășoară relativ lent. Astfel la prima instrucțiune se fac două accesări în memorie pentru citirea operanzilor b și c. La fel pentru a doua instrucțiune sunt necesare două accesări succesive la memorie (operand și rezultat).
+                        </p>
+
+                        <h4 class="mt-4">- <em>instrucțiuni cu 3 adrese (RISC);</em></h4>
+
+                        <div class="code-block mt-3 mb-3">
+                            <pre><code>load   r1,a          ; r1 ← @a
+load   r2,b          ; r2 ← @b
+load   r3,c          ;
+add    r2,r2,r3      ; r2 ← (r2 + r3)
+mul    r1,r1,r2      ; r1 ← (r1 * r2)
+store  x,r1          ; @x ← r1</code></pre>
                         </div>
 
-                        <!-- Image Placeholder -->
-                        <div class="image-placeholder">
-                            <div>
-                                <p class="text-muted mb-2"><strong>Diagramă: Interdependența ASI - Hardware</strong></p>
-                                <p class="text-muted small mt-3">📷 Inserează diagrama aici</p>
-                            </div>
+                        <p class="small">
+                            La acest tip de arhitecturi se folosesc doar instrucțiuni de <em>load</em> (încarcă) și <em>store</em> (stochează) când se comunică cu memoria, iar toate celelalte instrucțiuni se referă la operanzi din registrele UCP (deci prelucrare foarte rapidă)
+                        </p>
+
+                        <h4 class="mt-4">- <em>instrucțiuni cu 2 adrese (CISC)</em></h4>
+
+                        <div class="code-block mt-3 mb-3">
+                            <pre><code>load   r1,b          ;r1 ← @b
+add    r1,c          ;r1 ← r1 + @c
+mul    r1,a          ;r1 ← r1 * @a
+store  x,r1          ;@x ← r1</code></pre>
                         </div>
 
-                        <h3>Concluzii</h3>
-                        <div class="highlight-box success">
-                            <p>
-                                <strong>Principii importante:</strong>
-                            </p>
-                            <ol>
-                                <li>Designul ASI și al hardware-ului trebuie să fie coerent și optimizat împreună</li>
-                                <li>Nu există un design "perfect" - fiecare are avantaje și dezavantaje</li>
-                                <li>Alegerea depinde de aplicațiile țintă și de constrângerile de cost și performanță</li>
-                                <li>Evoluția tehnologiei permite noi abordări și optimizări</li>
-                            </ol>
+                        <h3 class="mt-5">b) pentru arhitecturi pe bază de acumulator (instrucțiuni cu o adresă, acumulatorul fiind adresat implicit):</h3>
+
+                        <div class="code-block mt-3 mb-3">
+                            <pre><code>load   b             ; ac ← @b
+add    c             ; ac ← ac + @c
+store  t             ; @t ← ac
+load   a             ; ac ← @a
+mul    t             ; ac ← ac * @t
+store  x             ; @x ← ac</code></pre>
                         </div>
+
+                        <p class="small">
+                            unde s-a notat cu "t" adresa unei locații de memorie folosită pentru stocarea temporară a rezultatelor intermediare
+                        </p>
+
+                        <h3 class="mt-5">c) pentru arhitecturi pe bază de stivă (instrucțiuni cu zero adrese)</h3>
+
+                        <div class="code-block mt-3 mb-4">
+                            <pre><code>push   a             ;vs ← @a, fie "adr" adresa curentă a vârfului stivei
+                                 ;(vs) ; iar stiva crește spre adrese mici
+push   b             ;vs ← @b, la adr-1
+push   c             ;vs ← @c, la adr-2
+add                  ;vs ← (b + c), stocat la adr-1           <em>zero adrese</em>
+
+mul                  ;vs ← a*(b+c), stocat la adr           <em>zero adrese</em>
+
+pop    x             ;@x ← vs, vs pointează la adr+1</code></pre>
+                        </div>
+
+                        <p>
+                            Pentru a evalua expresiile aritmetice într-un calculator stivă, e necesar să se convertească expresia în notația poloneză (inversă). Ideea a pornit de la matematicianul polonez Lukasievics J, care a notat o expresie de forma "a + b" ca "ab+".
+                        </p>
+
+                        <p class="mt-3">
+                            După același principiu putem exemplifica notația poloneză și pentru alte ecuații:
+                        </p>
+
+                        <div class="code-block mt-3 mb-4">
+                            <pre><code>x = a* (b + c)       =    abc+*
+x = (a+b)*(c-d)      =    ab+cd-*
+x = (a+b)*(c-d)*(e-f) =   ab+cd-ef-**</code></pre>
+                        </div>
+
+                        <p>
+                            După cum se vede, notația poloneză are avantajul că nu folosește paranteze. Ba mai mult, pornind de la stânga la dreapta se indică toate operațiile ce trebuiesc efectuate, în ordine, pe o arhitectură de tip stivă.
+                        </p>
 
                         <!-- Navigation Buttons -->
                         <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
@@ -254,36 +290,6 @@
     <button class="back-to-top" id="backToTop">
         <i class="bi bi-arrow-up"></i>
     </button>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <h5 class="mb-3">
-                        <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
-                    </h5>
-                    <p class="text-muted mb-0">
-                        Platformă educațională modernă pentru studiul arhitecturii calculatoarelor
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <h5 class="mb-3">Link-uri rapide</h5>
-                    <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-end">
-                        <a href="sectiunea1.html" class="text-muted text-decoration-none">Secțiunea I</a>
-                        <span class="text-muted d-none d-md-inline">•</span>
-                        <a href="sectiunea2.html" class="text-muted text-decoration-none">Secțiunea II</a>
-                        <span class="text-muted d-none d-md-inline">•</span>
-                        <a href="sectiunea3.html" class="text-muted text-decoration-none">Secțiunea III</a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="text-center text-muted">
-                <p class="mb-0">&copy; 2024 Arhitectura Calculatoarelor - Curs 7. Toate drepturile rezervate.</p>
-            </div>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
