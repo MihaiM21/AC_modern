@@ -146,3 +146,4 @@ Pentru întrebări sau probleme, verifică:
 2. Că serverul web rulează (XAMPP)
 3. Că path-urile către imagini sunt corecte
 
+
