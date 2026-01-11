@@ -147,3 +147,5 @@ Pentru întrebări sau probleme, verifică:
 3. Că path-urile către imagini sunt corecte
 
 
+
+

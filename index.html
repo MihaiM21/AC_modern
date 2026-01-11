@@ -1,267 +1,35 @@
 <!DOCTYPE html>
-<html lang="ro">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curs 7 - Arhitectura Setului de Instrucțiuni | Platformă Educațională</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Acasă</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sectiunea1.html">Secțiunea I</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sectiunea2.html">Secțiunea II</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sectiunea3.html">Secțiunea III</a>
-                    </li>
-                </ul>
-            </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sistemele cu multiagenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+            background-color: #E8E8E8;
+        }
+        .modal-content-custom {
+          background: white;
+          padding: 30px;
+          border-radius: 8px;
+          text-align: center;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+  </head>
+  <body>
+    <div class="center-container">
+        <div class="modal-content-custom" style="text-align: center;">
+            <h1 class="fw-bold" style="color: #007bff;">Cursul 7</h1>
+            <h2>ARHITECTURA SETULUI DE INSTRUCȚIUNI</h2>
+            <a href="./html/main.html" type="button" class="btn btn-primary mt-3">Începe învățarea!</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-10 mx-auto text-center text-white">
-                    <div class="mb-4">
-                        <span class="badge bg-white text-primary px-3 py-2 mb-3" style="font-size: 0.9rem; font-weight: 600;">
-                            <i class="bi bi-book"></i> Curs Universitar
-                        </span>
-                    </div>
-                    <h1 class="display-3 fw-bold mb-3">Curs 7</h1>
-                    <h2 class="display-5 mb-4">ARHITECTURA SETULUI DE INSTRUCȚIUNI</h2>
-                    <p class="lead mb-5">Explorează fundamentele arhitecturii setului de instrucțiuni și înțelege cum funcționează procesorul la nivel de mașină</p>
-                    <div class="d-flex gap-3 justify-content-center flex-wrap">
-                        <a href="sectiunea1.html" class="btn btn-light btn-lg">
-                            <i class="bi bi-play-circle-fill"></i> Începe învățarea
-                        </a>
-                        <a href="#cursuri" class="btn btn-outline-light btn-lg">
-                            <i class="bi bi-list-ul"></i> Vezi conținutul
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Course Stats -->
-    <section class="py-4" style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <i class="bi bi-book text-primary" style="font-size: 1.5rem;"></i>
-                        <div class="text-start">
-                            <div class="fw-bold" style="font-size: 1.25rem;">3</div>
-                            <div class="text-muted small">Secțiuni</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <i class="bi bi-clock text-primary" style="font-size: 1.5rem;"></i>
-                        <div class="text-start">
-                            <div class="fw-bold" style="font-size: 1.25rem;">~2h</div>
-                            <div class="text-muted small">Timp estimat</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-md-4">
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <i class="bi bi-award text-primary" style="font-size: 1.5rem;"></i>
-                        <div class="text-start">
-                            <div class="fw-bold" style="font-size: 1.25rem;">Nivel</div>
-                            <div class="text-muted small">Intermediar</div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Overview -->
-    <section id="cursuri" class="content-overview">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: var(--text-primary);">Conținutul Cursului</h2>
-                <p class="text-muted lead">Explorează fiecare secțiune pentru a înțelege complet arhitectura setului de instrucțiuni</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="course-card">
-                        <div class="card-body text-center p-4">
-                            <div class="course-card-icon">
-                                <i class="bi bi-book"></i>
-                            </div>
-                            <h3 class="course-card-title">Secțiunea I</h3>
-                            <p class="course-card-description">
-                                Introducere în arhitectura setului de instrucțiuni. Învață despre clasificarea instrucțiunilor, caracteristicile principale și relația dintre software și hardware.
-                            </p>
-                            <div class="mb-3">
-                                <span class="badge bg-secondary-subtle text-secondary">
-                                    <i class="bi bi-clock"></i> ~40 min
-                                </span>
-                            </div>
-                            <a href="sectiunea1.html" class="course-card-btn">
-                                <i class="bi bi-arrow-right"></i> Începe secțiunea
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="course-card">
-                        <div class="card-body text-center p-4">
-                            <div class="course-card-icon" style="background: var(--gradient-secondary);">
-                                <i class="bi bi-code-square"></i>
-                            </div>
-                            <h3 class="course-card-title">Secțiunea II</h3>
-                            <p class="course-card-description">
-                                Formatul instrucțiunilor. Explorează diferite tipuri de arhitecturi, exemple practice de cod și notația poloneză pentru evaluarea expresiilor.
-                            </p>
-                            <div class="mb-3">
-                                <span class="badge bg-secondary-subtle text-secondary">
-                                    <i class="bi bi-clock"></i> ~50 min
-                                </span>
-                            </div>
-                            <a href="sectiunea2.html" class="course-card-btn">
-                                <i class="bi bi-arrow-right"></i> Începe secțiunea
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="course-card">
-                        <div class="card-body text-center p-4">
-                            <div class="course-card-icon" style="background: var(--gradient-success);">
-                                <i class="bi bi-diagram-3"></i>
-                            </div>
-                            <h3 class="course-card-title">Secțiunea III</h3>
-                            <p class="course-card-description">
-                                Interdependența set de instrucțiuni - organizare internă. Înțelege relația dintre ASI și hardware, compară RISC vs CISC și arhitecturi load/store.
-                            </p>
-                            <div class="mb-3">
-                                <span class="badge bg-secondary-subtle text-secondary">
-                                    <i class="bi bi-clock"></i> ~30 min
-                                </span>
-                            </div>
-                            <a href="sectiunea3.html" class="course-card-btn">
-                                <i class="bi bi-arrow-right"></i> Începe secțiunea
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Learning Objectives -->
-    <!-- <section class="py-5" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <h3 class="fw-bold mb-4">
-                                <i class="bi bi-bullseye text-primary"></i> Obiective de Învățare
-                            </h3>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-start gap-3">
-                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem; margin-top: 0.25rem;"></i>
-                                        <div>
-                                            <h5 class="fw-semibold mb-1">Înțelegerea ASI</h5>
-                                            <p class="text-muted small mb-0">Comprehenderea rolului și importanței arhitecturii setului de instrucțiuni</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-start gap-3">
-                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem; margin-top: 0.25rem;"></i>
-                                        <div>
-                                            <h5 class="fw-semibold mb-1">Formate de Instrucțiuni</h5>
-                                            <p class="text-muted small mb-0">Analiza diferitelor formate și tipuri de arhitecturi</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-start gap-3">
-                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem; margin-top: 0.25rem;"></i>
-                                        <div>
-                                            <h5 class="fw-semibold mb-1">Exemple Practice</h5>
-                                            <p class="text-muted small mb-0">Rezolvarea de probleme practice cu diferite tipuri de instrucțiuni</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex align-items-start gap-3">
-                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem; margin-top: 0.25rem;"></i>
-                                        <div>
-                                            <h5 class="fw-semibold mb-1">Interdependențe</h5>
-                                            <p class="text-muted small mb-0">Înțelegerea relației dintre ASI și organizarea hardware</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Footer -->
-    <!-- <footer class="bg-dark text-white">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <h5 class="mb-3">
-                        <i class="bi bi-mortarboard-fill"></i> Curs 7 - ASI
-                    </h5>
-                    <p class="text-muted mb-0">
-                        Platformă educațională modernă pentru studiul arhitecturii calculatoarelor
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <h5 class="mb-3">Link-uri rapide</h5>
-                    <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-end">
-                        <a href="sectiunea1.html" class="text-muted text-decoration-none">Secțiunea I</a>
-                        <span class="text-muted d-none d-md-inline">•</span>
-                        <a href="sectiunea2.html" class="text-muted text-decoration-none">Secțiunea II</a>
-                        <span class="text-muted d-none d-md-inline">•</span>
-                        <a href="sectiunea3.html" class="text-muted text-decoration-none">Secțiunea III</a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="text-center text-muted">
-                <p class="mb-0">&copy; 2024 Arhitectura Calculatoarelor - Curs 7. Toate drepturile rezervate.</p>
-            </div>
-        </div>
-    </footer> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
+    </div>
+  </body>
 </html>

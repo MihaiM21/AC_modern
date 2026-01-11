@@ -13,49 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const fireworksCanvas = document.getElementById("fireworks-canvas");
   const ctx = fireworksCanvas.getContext("2d");
 
-  const allSubChapters = Array.from(
-    listGroup.querySelectorAll(".list-group-item-action:not(.chapter-toggle)")
+  const allLinks = Array.from(
+    listGroup.querySelectorAll(".list-group-item-action[data-src]")
   );
-  const totalSubChapters = allSubChapters.length;
+  const totalLinks = allLinks.length;
   const visitedLinks = new Set();
   let fireworksAnimation;
 
   function updateProgress() {
-    const progress = (visitedLinks.size / totalSubChapters) * 100;
+    const progress = (visitedLinks.size / totalLinks) * 100;
     progressBar.style.width = `${progress}%`;
     progressContainer.setAttribute("aria-valuenow", progress);
   }
 
-  function unlockChapter(chapterId) {
-    const chapterToggle = listGroup.querySelector(
-      `.chapter-toggle[data-chapter-id='${chapterId}']`
-    );
-    const collapseElement = document.getElementById(
-      `collapseChapter${chapterId}`
-    );
-
-    if (chapterToggle && chapterToggle.classList.contains("locked")) {
-      chapterToggle.classList.remove("locked");
-      new bootstrap.Collapse(collapseElement, { toggle: true });
-    }
-  }
-
-  function getVisibleLinks() {
-    return allSubChapters.filter((link) => {
-      const parentToggle = listGroup.querySelector(
-        `[data-chapter-id='${link.dataset.parentChapter}']`
-      );
-      return !parentToggle.classList.contains("locked");
-    });
-  }
-
-  function handleSubChapterClick(event) {
+  function handleLinkClick(event) {
     event.preventDefault();
-    const parentChapterId = this.dataset.parentChapter;
-    const parentToggle = listGroup.querySelector(
-      `.chapter-toggle[data-chapter-id='${parentChapterId}']`
-    );
-    if (parentToggle.classList.contains("locked")) return;
 
     const currentActive = listGroup.querySelector(".list-group-item.active");
     if (currentActive) {
@@ -80,28 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
       contentIframe.src = "";
     }
 
-    const visibleLinks = getVisibleLinks();
-    const currentIndex = visibleLinks.indexOf(this);
+    const currentIndex = allLinks.indexOf(this);
 
     backBtn.disabled = currentIndex === 0;
 
-    const isLastOfAll = allSubChapters.indexOf(this) === totalSubChapters - 1;
+    const isLastOfAll = currentIndex === totalLinks - 1;
 
     if (isLastOfAll) {
       nextBtn.innerHTML = 'Finalizare <i class="bi bi-check-circle-fill"></i>';
     } else {
       nextBtn.innerHTML = 'Următorul <i class="bi bi-arrow-right"></i>';
-    }
-
-    const subChaptersInScope = Array.from(
-      this.parentElement.querySelectorAll(".list-group-item-action")
-    );
-    const isLastInChapter =
-      subChaptersInScope.indexOf(this) === subChaptersInScope.length - 1;
-
-    if (isLastInChapter) {
-      const nextChapterId = parseInt(parentChapterId) + 1;
-      unlockChapter(nextChapterId);
     }
   }
 
@@ -119,11 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentActive = listGroup.querySelector(".list-group-item.active");
     if (!currentActive) return;
 
-    const visibleLinks = getVisibleLinks();
-    const currentIndex = visibleLinks.indexOf(currentActive);
+    const currentIndex = allLinks.indexOf(currentActive);
 
-    if (currentIndex < visibleLinks.length - 1) {
-      visibleLinks[currentIndex + 1].click();
+    if (currentIndex < allLinks.length - 1) {
+      allLinks[currentIndex + 1].click();
     }
   }
 
@@ -131,11 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentActive = listGroup.querySelector(".list-group-item.active");
     if (!currentActive) return;
 
-    const visibleLinks = getVisibleLinks();
-    const currentIndex = visibleLinks.indexOf(currentActive);
+    const currentIndex = allLinks.indexOf(currentActive);
 
     if (currentIndex > 0) {
-      visibleLinks[currentIndex - 1].click();
+      allLinks[currentIndex - 1].click();
     }
   }
 
@@ -205,8 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function initialize() {
-    allSubChapters.forEach((link) => {
-      link.addEventListener("click", handleSubChapterClick);
+    allLinks.forEach((link) => {
+      link.addEventListener("click", handleLinkClick);
     });
 
     toggleBtn.addEventListener("click", () => {
@@ -224,17 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
       congratsModal.classList.add("d-none")
     );
 
-    unlockChapter(1);
-
-    const firstSubChapter = listGroup.querySelector(
-      "#collapseChapter1 .list-group-item-action"
-    );
-    if (firstSubChapter) {
-      firstSubChapter.click();
+    // Load first section by default
+    if (allLinks.length > 0) {
+      allLinks[0].click();
     }
   }
 
   initialize();
 });
-
-
